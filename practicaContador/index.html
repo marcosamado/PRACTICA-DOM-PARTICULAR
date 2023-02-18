@@ -20,27 +20,26 @@
         <h4 class="my-5">contador: 
             <span id="contador">0</span>
         </h4>
+        <button class="btn btn-success">
+            Aumentar
+        </button>
+        <button class="btn btn-secondary">
+            Disminuir
+        </button>
+        <h2 class="my-5">Contador 2:
+            <span id="contador2">0</span> 
+        </h2>
+        <h2 class="my-5">Contador final:
+            <span id="contadorFinal">0</span>
+        </h2>
+        <button class="btn btn-primary">
+            Borrar
+        </button>
     </div>
+    
 
-    <script>
-        const btnDisminuir = document.querySelector(".btn-danger");
-        const btnAumentar = document.querySelector(".btn-info");
-        const btnPorDiez = document.querySelector(".btn-dark");
-        const contador = document.getElementById("contador");
-        let sumador = 0;
+    <script src="./script.js">
         
-        btnAumentar.addEventListener("click", () => {
-            contador.textContent++;
-        });
-        btnDisminuir.addEventListener("click", () => {
-            if(parseInt(contador.textContent) > 0){
-            contador.textContent--;
-            }
-        });
-        btnPorDiez.addEventListener("click", () => {
-            parseInt(contador.textContent) + 10;
-        });
-
     </script>
 </body>
 </html>
