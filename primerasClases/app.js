@@ -71,17 +71,41 @@ const PRODUCTOS = ["pan", "galletas", "bizcochos", "facturas"];
 // lista.appendChild(fragmento);
 
 // *********** TEMPLATE HTML
+let producto1 = "zapas saishi";
+let producto2 = "zapas jump";
+let producto3 = "zapas pinku";
 
-const template = document.querySelector("#template-li").content;
-const fragment = document.createDocumentFragment();
+let productosFinal = [];
 
-PRODUCTOS.forEach( producto => {
-    template.querySelector("span").textContent = producto;
-    const clone = template.cloneNode(true);
-    fragment.appendChild(clone);
+const botonPadre = document.getElementById("buttonPadre");
+let cantidad1 = 0;
+let cantidad2 = 0;
+let cantidad3 = 0;
+
+botonPadre.addEventListener("click",(e) => {
+    if(e.target.classList.contains("btn1")){
+        productosFinal.push(producto1);
+    }
+    if(e.target.classList.contains("btn2")){
+        productosFinal.push(producto2);
+    }
+    if(e.target.classList.contains("btn3")){
+        productosFinal.push(producto3);
+    }
+    if(e.target.classList.contains("btnAgregar")){
+        const template = document.querySelector("#template-li").content;
+        const fragment = document.createDocumentFragment();
+        
+        productosFinal.forEach( producto => {
+            template.querySelector("span").textContent = producto;
+            const clone = template.cloneNode(true);
+            fragment.appendChild(clone);
+        });
+
+        lista.appendChild(fragment);
+        productosFinal = [];
+    }    
 });
-
-lista.appendChild(fragment);
 
 
 
