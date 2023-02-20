@@ -82,6 +82,9 @@ let cantidad1 = 0;
 let cantidad2 = 0;
 let cantidad3 = 0;
 
+const template = document.querySelector("#template-li").content;
+const fragment = document.createDocumentFragment();
+
 botonPadre.addEventListener("click",(e) => {
     if(e.target.classList.contains("btn1")){
         productosFinal.push(producto1);
@@ -93,8 +96,6 @@ botonPadre.addEventListener("click",(e) => {
         productosFinal.push(producto3);
     }
     if(e.target.classList.contains("btnAgregar")){
-        const template = document.querySelector("#template-li").content;
-        const fragment = document.createDocumentFragment();
         
         productosFinal.forEach( producto => {
             template.querySelector("span").textContent = producto;
