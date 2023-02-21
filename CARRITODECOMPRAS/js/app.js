@@ -1,6 +1,12 @@
 //*****Tercero Capturamos los elementos ID, TEMPLATE y creamos Fragments  */
+const cards = document.getElementById("cards");
 const items = document.getElementById("items");
+const footer = document.getElementById("footer");
+
+const templateFooter = document.getElementById("template-footer").content;
+const templateCarrito = document.getElementById("template-carrito").content;
 const templateCard = document.getElementById("template-card").content;
+
 const fragment = document.createDocumentFragment();
 
 //*****Sexto Declaramos el objeto carrito*/
@@ -16,7 +22,7 @@ document.addEventListener("click", e => {
     addCarrito(e);
 } )
 
-//******Primero capturamos la data de la API o JSON en la funcion fechtData*/
+//******Primero capturamos la data de la API o JSON en la funcion fechtData*/}
 
 const fetchData = async() => {
     try {
@@ -24,6 +30,7 @@ const fetchData = async() => {
         const data = await res.json();
         imprimirCards(data);
     } catch (error) {
+
         console.log(error);
     };
 };
@@ -38,7 +45,7 @@ const imprimirCards = data => {
         const clone = templateCard.cloneNode(true);
         fragment.appendChild(clone);
     });
-    items.appendChild(fragment);
+    cards.appendChild(fragment);
 };
 //*****Quinto-2 funcion para capturar los targets (elementos HTML) en una funcion (setCarrito)*/
 const addCarrito = capturar => {
@@ -48,7 +55,7 @@ const addCarrito = capturar => {
     capturar.stopPropagation();
 }
 
-//***Septimo */
+//***Septimo Creamos una funcion para crear y agregar los productos al carrito*/
 const setCarrito = objeto => {
     const producto = {
         id: objeto.querySelector(".btn-dark").dataset.id,
@@ -62,5 +69,30 @@ const setCarrito = objeto => {
     };
 
     carrito[producto.id] = {...producto};
-    console.log(carrito);
+    imprimirCarrito();
 };
+
+const imprimirCarrito = () => {
+    items.innerHTML = "";
+    Object.values(carrito).forEach(producto => {
+        templateCarrito.querySelector("th").textContent = producto.id;
+        templateCarrito.querySelectorAll("td")[0].textContent = producto.title;
+        templateCarrito.querySelectorAll("td")[1].textContent = producto.cantidad;
+        templateCarrito.querySelector(".btn-info").dataset.id = producto.id;
+        templateCarrito.querySelector(".btn-danger").dataset.id = producto.id;
+        templateCarrito.querySelector("span").textContent = producto.precio * producto.cantidad;
+
+        const clone = templateCarrito.cloneNode(true);
+        fragment.appendChild(clone);
+    });
+    items.appendChild(fragment);
+
+    imprimirFooter();
+};
+
+const imprimirFooter = () => {
+    footer.innerHTML = "";
+    if(Object.keys(carrito).length === 0){
+        footer.innerHTML = `<th scope="row" colspan="5">Carrito vacío - comience a comprar!</th>`
+    }
+}
