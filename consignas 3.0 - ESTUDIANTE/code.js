@@ -77,11 +77,16 @@ function recorrerListadoYRenderizarTarjetas() {
 
 function alternarColorTema() {
   /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
- 
+    const cambiandoTema = document.querySelector(".sitio");
+    sitio.classList.toggle("dark");
   
-
-
 }
 
 /* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
 
+document.addEventListener("keypress", (e) => {
+  const sobreMi = document.getElementById("sobre-mi");
+  if(e.key == "f"){
+      sobreMi.classList.remove("oculto");
+  }
+});
