@@ -140,7 +140,7 @@ const btnAccion = (e) => {
         }
         // carrito[e.target.dataset.id] = {...producto};
         
-         imprimirCarrito();
+        imprimirCarrito();
     };
 
     e.stopPropagation();
