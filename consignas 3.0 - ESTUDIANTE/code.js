@@ -89,4 +89,5 @@ document.addEventListener("keypress", (e) => {
   if(e.key == "f"){
       sobreMi.classList.remove("oculto");
   }
+  
 });
